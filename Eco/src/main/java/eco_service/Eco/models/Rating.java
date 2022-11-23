@@ -18,10 +18,13 @@ public class Rating {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "rating")
     private double rating;
+
     @Column(name = "comment")
     private String comment;
+
     @ManyToOne
     @JoinColumn(name = "eco_service_id")
     private EcoService ecoService;

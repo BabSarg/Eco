@@ -19,12 +19,16 @@ public class WasteAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "country")
     private String country;
+
     @Column(name = "city")
     private String city;
+
     @Column(name = "street")
     private String street;
+
     @Column(name = "number")
     private String number;
 }
