@@ -18,22 +18,22 @@ public class EcoServiceController {
     EcoServiceImpl ecoServiceImpl;
     private static final Logger log= LoggerFactory.getLogger(EcoServiceController.class);
 
-    @GetMapping(value="/getAllEcoServices")
+    @GetMapping(value="/getAll")
     public List<EcoServiceDTO> getAllEcoServices(){
         return ecoServiceImpl.getAllEcoServices();
     }
 
-    @PostMapping(value="/createEcoService")
+    @PostMapping(value="/save")
     public EcoServiceDTO createEcoService(@Valid @RequestBody() EcoServiceDTO ecoServiceDTO){
         return ecoServiceImpl.saveOrUpdateEcoService(ecoServiceDTO);
     }
 
-    @GetMapping(value="/getEcoServiceById/{id}")
+    @GetMapping(value="/getById/{id}")
     public EcoServiceDTO getByEcoserviceId(@PathVariable("id") Long ecoServiceId){
         return ecoServiceImpl.getEcoServiceById(ecoServiceId);
     }
 
-    @DeleteMapping(value="/deleteEcoServiceById/{id}")
+    @DeleteMapping(value="/deleteById/{id}")
     public void deleteEcoServiceById(@PathVariable("id") Long ecoServiceId){
         ecoServiceImpl.deleteEcoServiceById(ecoServiceId);
     }
