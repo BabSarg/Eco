@@ -28,19 +28,19 @@ public class EcoService {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "isDelivery")
+    @Column(name = "is_delivery")
     private boolean isDelivery;
 
     @Column(name = "address")
     private String address;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
-    @Column(name = "workHours")
+    @Column(name = "work_hours")
     private String workHours;
 
-    @Column(name = "isFree")
+    @Column(name = "is_free")
     private boolean isFree;
 
 }

@@ -10,7 +10,6 @@ import eco_service.Eco.models.EcoService;
 import eco_service.Eco.repositories.EcoServiceRepository;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.EcoServiceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
