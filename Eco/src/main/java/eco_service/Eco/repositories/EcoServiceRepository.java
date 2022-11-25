@@ -15,5 +15,5 @@ public interface EcoServiceRepository extends JpaRepository<EcoService, Long> {
 
     boolean existsByEmail(String email);
 
-    EcoService save(EcoService ecoService);
+
 }
