@@ -18,17 +18,23 @@ public class Waste {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "type")
     private String type;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "longitude")
     private double longitude;
+
     @Column(name = "latitude")
     private boolean latitude;
+
     @ManyToOne
     @JoinColumn(name = "eco_service_id")
     private EcoService ecoService;
+
     @ManyToOne
     @JoinColumn(name = "waste_address_id")
     private WasteAddress wasteAddress;
