@@ -14,4 +14,6 @@ public interface EcoServiceRepository extends JpaRepository<EcoService, Long> {
     EcoService findByName(String name);
 
     boolean existsByEmail(String email);
+
+    EcoService save(EcoService ecoService);
 }

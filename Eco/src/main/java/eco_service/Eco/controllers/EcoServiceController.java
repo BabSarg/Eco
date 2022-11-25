@@ -37,11 +37,11 @@ public class EcoServiceController {
         return ResponseEntity.ok(updateEcoService);
     }
 
-@PatchMapping("{id}")
-public ResponseEntity<Response<ErrorResponse,EcoServiceDTO>> changePassword(@PathVariable Long id, @RequestBody ChangePasswordEcoServiceDto ecoServiceDto){
-    Response<ErrorResponse, EcoServiceDTO> changedPassword = ecoServiceService.changePassword(id, ecoServiceDto);
-    return ResponseEntity.ok(changedPassword);
-}
+    @PatchMapping("{id}")
+    public ResponseEntity<Response<ErrorResponse, EcoServiceDTO>> changePassword(@PathVariable Long id, @RequestBody ChangePasswordEcoServiceDto ecoServiceDto) {
+        Response<ErrorResponse, EcoServiceDTO> changedPassword = ecoServiceService.changePassword(id, ecoServiceDto);
+        return ResponseEntity.ok(changedPassword);
+    }
 
     @PostMapping(value = "/save")
     public ResponseEntity<Response<ErrorResponse, EcoServiceDTO>> add(@Valid @RequestBody() EcoServiceDTO ecoServiceDTO) {
