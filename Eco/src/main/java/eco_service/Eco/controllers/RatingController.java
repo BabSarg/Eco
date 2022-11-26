@@ -20,7 +20,7 @@ import javax.validation.Valid;
 public class RatingController {
 
     private final RatingService ratingService;
-    private static final Logger log = LoggerFactory.getLogger(EcoServiceController.class);
+    private static final Logger log = LoggerFactory.getLogger(RatingController.class);
 
     public RatingController(RatingService ratingService) {
         this.ratingService = ratingService;
