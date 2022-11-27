@@ -21,10 +21,10 @@ public class WasteDTO {
 
     private double longitude;
 
-    private boolean latitude;
+    private double latitude;
 
-    private EcoService ecoService;
+    private EcoServiceDTO ecoService;
 
-    private WasteAddress wasteAddress;
+    private WasteAddressDTO wasteAddress;
 
 }

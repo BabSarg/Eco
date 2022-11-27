@@ -21,6 +21,8 @@ public class EcoServiceAddMapper implements BaseMapper<EcoService, EcoServiceAdd
                 .isFree(ecoService.isFree())
                 .isDelivery(ecoService.isDelivery())
                 .photo(ecoService.getPhoto())
+                .country(ecoService.getCountry())
+                .city(ecoService.getCity())
                 .build();
     }
 
@@ -41,6 +43,8 @@ public class EcoServiceAddMapper implements BaseMapper<EcoService, EcoServiceAdd
                 .isFree(ecoServiceDTO.isFree())
                 .isDelivery(ecoServiceDTO.isDelivery())
                 .photo(ecoServiceDTO.getPhoto())
+                .country(ecoServiceDTO.getCountry())
+                .city(ecoServiceDTO.getCity())
                 .build();
     }
 

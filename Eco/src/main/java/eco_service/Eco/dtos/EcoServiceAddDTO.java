@@ -12,8 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class EcoServiceAddDTO {
 
-    private Long id;
-
     private String name;
 
     private String email;
@@ -31,5 +29,9 @@ public class EcoServiceAddDTO {
     private boolean isFree;
 
     private String photo;
+
+    private String city;
+
+    private String country;
 
 }

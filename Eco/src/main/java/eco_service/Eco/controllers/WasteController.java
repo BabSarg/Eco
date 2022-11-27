@@ -1,8 +1,8 @@
 package eco_service.Eco.controllers;
 
-import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.WasteDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
+import eco_service.Eco.filter.WasteFilter;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.WasteService;
 import org.slf4j.Logger;
@@ -25,8 +25,31 @@ public class WasteController {
     }
 
     @GetMapping
-    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAll() {
-        Response<ErrorResponse, List<WasteDTO>> all = wasteService.getAll();
+    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAll(@RequestParam(value = "type",required = false) String type,
+                                                                          @RequestParam(value = "longitude",required = false) Double longitude,
+                                                                          @RequestParam(value = "latitude",required = false) Double latitude,
+                                                                          @RequestParam(value = "country",required = false) String country,
+                                                                          @RequestParam(value = "city",required = false) String city,
+                                                                          @RequestParam(value = "street",required = false) String street,
+                                                                          @RequestParam(value = "ecoServiceName",required = false) String ecoServiceName,
+                                                                          @RequestParam(value = "ecoServiceAddress",required = false) String ecoServiceAddress,
+                                                                          @RequestParam(value = "ecoServicePhoneNumber",required = false) String ecoServicePhoneNumber,
+                                                                          @RequestParam(value = "ecoServiceCountry",required = false) String ecoServiceCountry,
+                                                                          @RequestParam(value = "ecoServiceCity",required = false) String ecoServiceCity
+    ) {
+        Response<ErrorResponse, List<WasteDTO>> all = wasteService.getAll(WasteFilter.where()
+                .type(type)
+                .longitude(longitude)
+                .latitude(latitude)
+                .country(country)
+                .city(city)
+                .street(street)
+                .ecoServiceName(ecoServiceName)
+                .ecoServiceAddress(ecoServiceAddress)
+                .ecoServicePhoneNumber(ecoServicePhoneNumber)
+                .ecoServiceCountry(ecoServiceCountry)
+                .ecoServiceCity(ecoServiceCity)
+                .build());
         return ResponseEntity.ok(all);
     }
 
@@ -41,6 +64,7 @@ public class WasteController {
         Response<ErrorResponse, WasteDTO> byId = wasteService.getByEcoServiceId(id);
         return ResponseEntity.ok(byId);
     }
+
     @PostMapping
     public ResponseEntity<Response<ErrorResponse, WasteDTO>> add(@Valid @RequestBody() WasteDTO wasteDTO) {
         Response<ErrorResponse, WasteDTO> add = wasteService.add(wasteDTO);

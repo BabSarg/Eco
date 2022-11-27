@@ -44,7 +44,13 @@ public class EcoService {
     private boolean isFree;
 
     @Column(name = "refresh_token")
-    String refreshToken;
+    private String refreshToken;
+
+    @Column(name = "country")
+    private String country;
+
+    @Column(name = "city")
+    private String city;
 
     @Column(name = "photo")
     private String photo;
