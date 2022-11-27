@@ -1,22 +1,19 @@
 package eco_service.Eco.dtos;
 
-import eco_service.Eco.models.EcoService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class RatingDTO {
+public class RatingResponseDto {
 
-    private Long id;
+    private List<RatingDTO> ratingDTOList;
+    private double average;
 
-    private double rating;
-
-    private String comment;
-
-    private EcoServiceDTO ecoServiceDto;
 }

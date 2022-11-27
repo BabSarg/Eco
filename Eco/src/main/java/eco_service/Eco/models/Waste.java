@@ -29,13 +29,13 @@ public class Waste {
     private double longitude;
 
     @Column(name = "latitude")
-    private boolean latitude;
+    private double latitude;
 
     @ManyToOne
     @JoinColumn(name = "eco_service_id")
     private EcoService ecoService;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "waste_address_id")
     private WasteAddress wasteAddress;
 

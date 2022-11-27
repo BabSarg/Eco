@@ -5,6 +5,7 @@ import eco_service.Eco.dtos.WasteDTO;
 import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
+import eco_service.Eco.filter.WasteFilter;
 import eco_service.Eco.mappers.WasteMapper;
 import eco_service.Eco.models.Waste;
 import eco_service.Eco.repositories.WasteRepository;
@@ -13,6 +14,8 @@ import eco_service.Eco.services.WasteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class WasteServiceImpl implements WasteService {
@@ -27,9 +30,16 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
-    public Response<ErrorResponse, List<WasteDTO>> getAll() {
-        List<Waste> waste = wasteRepository.findAll();
-        return new Response<>(null, wasteMapper.toDTO(waste), WasteDTO.class.getName());
+    public Response<ErrorResponse, List<WasteDTO>> getAll(WasteFilter wasteFilter) {
+        List<Waste> wasteList;
+        if(wasteFilter.getPredicate() == null){
+            wasteList = wasteRepository.findAll();
+        }else {
+            Iterable<Waste> iterable = wasteRepository.findAll(wasteFilter.getPredicate());
+         wasteList = StreamSupport.stream(iterable.spliterator(), false)
+                    .collect(Collectors.toList());
+        }
+        return new Response<>(null, wasteMapper.toDTO(wasteList), WasteDTO.class.getName());
     }
 
     @Override
@@ -46,9 +56,6 @@ public class WasteServiceImpl implements WasteService {
 
     @Override
     public Response<ErrorResponse, WasteDTO> add(WasteDTO wasteDTO) {
-        if (wasteRepository.existsById(wasteDTO.getId())) {
-            throw new ConflictException(wasteDTO.getId() + "Id already exists");
-        }
         Waste savedWaste=wasteRepository.save(wasteMapper.toEntity(wasteDTO));
         return new Response<>(null, wasteMapper.toDTO(savedWaste), WasteDTO.class.getSimpleName());
 

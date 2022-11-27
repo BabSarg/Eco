@@ -1,16 +1,14 @@
 package eco_service.Eco.controllers;
 
 import eco_service.Eco.dtos.RatingDTO;
+import eco_service.Eco.dtos.RatingResponseDto;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.RatingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -29,6 +27,12 @@ public class RatingController {
     public ResponseEntity<Response<ErrorResponse, RatingDTO>> add(@Valid @RequestBody() RatingDTO ratingDTO) {
         Response<ErrorResponse, RatingDTO> add = ratingService.add(ratingDTO);
         return ResponseEntity.ok(add);
+    }
+
+    @GetMapping("/ecoService/{id}")
+    public ResponseEntity<Response<ErrorResponse, RatingResponseDto>> getByEcoServiceId(@PathVariable long id){
+        Response<ErrorResponse, RatingResponseDto> allByEcoServiceId = ratingService.getAllByEcoServiceId(id);
+        return ResponseEntity.ok(allByEcoServiceId);
     }
 
 }

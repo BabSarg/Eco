@@ -29,4 +29,7 @@ public class EcoServiceDTO {
 
     private boolean isFree;
 
+    private String city;
+
+    private String country;
 }

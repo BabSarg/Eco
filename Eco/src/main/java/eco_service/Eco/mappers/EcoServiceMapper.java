@@ -12,6 +12,7 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
     @Override
     public EcoServiceDTO toDTO(EcoService ecoService) {
         return EcoServiceDTO.builder()
+                .id(ecoService.getId())
                 .name(ecoService.getName())
                 .email(ecoService.getEmail())
                 .address(ecoService.getAddress())
@@ -19,6 +20,8 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
                 .phoneNumber(ecoService.getPhoneNumber())
                 .isFree(ecoService.isFree())
                 .isDelivery(ecoService.isDelivery())
+                .country(ecoService.getCountry())
+                .city(ecoService.getCity())
                 .build();
     }
 
@@ -30,6 +33,7 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
     @Override
     public EcoService toEntity(EcoServiceDTO ecoServiceDTO) {
         return EcoService.builder()
+                .id(ecoServiceDTO.getId())
                 .name(ecoServiceDTO.getName())
                 .email(ecoServiceDTO.getEmail())
                 .address(ecoServiceDTO.getAddress())
@@ -37,6 +41,8 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
                 .workHours(ecoServiceDTO.getWorkHours())
                 .isFree(ecoServiceDTO.isFree())
                 .isDelivery(ecoServiceDTO.isDelivery())
+                .country(ecoServiceDTO.getCountry())
+                .city(ecoServiceDTO.getCity())
                 .build();
     }
 
