@@ -1,6 +1,5 @@
 package eco_service.Eco.controllers;
 
-import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.response.Response;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/goeco/rating/")
+@RequestMapping("/goeco/rating")
 public class RatingController {
 
     private final RatingService ratingService;
@@ -26,7 +25,7 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping
     public ResponseEntity<Response<ErrorResponse, RatingDTO>> add(@Valid @RequestBody() RatingDTO ratingDTO) {
         Response<ErrorResponse, RatingDTO> add = ratingService.add(ratingDTO);
         return ResponseEntity.ok(add);

@@ -2,11 +2,11 @@ package eco_service.Eco.mappers;
 
 import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.RatingDTO;
-import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Rating;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-
+@Component
 public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
     @Override
     public RatingDTO toDTO(Rating rating) {

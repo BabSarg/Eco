@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class EcoServiceDTO {
+public class EcoServiceAddDTO {
 
     private Long id;
 
@@ -18,6 +18,7 @@ public class EcoServiceDTO {
 
     private String email;
 
+    private String password;
 
     private boolean isDelivery;
 
@@ -28,5 +29,7 @@ public class EcoServiceDTO {
     private String workHours;
 
     private boolean isFree;
+
+    private String photo;
 
 }

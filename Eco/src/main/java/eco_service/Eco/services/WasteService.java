@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface WasteService {
 
-    Response<ErrorResponse, List<WasteDTO>> getAllWaste();
+    Response<ErrorResponse, List<WasteDTO>> getAll();
 
-    Response<ErrorResponse, WasteDTO> getByWasteId(Long id);
+    Response<ErrorResponse, WasteDTO> getById(Long id);
 
     Response<ErrorResponse, WasteDTO> getByEcoServiceId(Long id);
 
-    Response<ErrorResponse, WasteDTO> addWaste(WasteDTO wasteDTO);
+    Response<ErrorResponse, WasteDTO> add(WasteDTO wasteDTO);
 }
