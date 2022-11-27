@@ -43,4 +43,9 @@ public class EcoService {
     @Column(name = "is_free")
     private boolean isFree;
 
+    @Column(name = "refresh_token")
+    String refreshToken;
+
+    @Column(name = "photo")
+    private String photo;
 }

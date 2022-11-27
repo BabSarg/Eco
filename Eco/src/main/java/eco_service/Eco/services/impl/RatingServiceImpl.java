@@ -4,7 +4,6 @@ import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.mappers.RatingMapper;
-import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Rating;
 import eco_service.Eco.repositories.RatingRepository;
 import eco_service.Eco.response.Response;

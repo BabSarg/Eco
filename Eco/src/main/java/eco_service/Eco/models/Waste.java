@@ -39,5 +39,6 @@ public class Waste {
     @JoinColumn(name = "waste_address_id")
     private WasteAddress wasteAddress;
 
-
+    @Column(name = "photo")
+    private String photo;
 }

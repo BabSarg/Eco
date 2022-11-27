@@ -5,15 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EcoServiceRepository extends JpaRepository<EcoService, Long> {
 
-    List<EcoService> findAll();
-
     EcoService findByName(String name);
 
     boolean existsByEmail(String email);
+
+    Optional<EcoService> findByEmail(String email);
 
 
 }

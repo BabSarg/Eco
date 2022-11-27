@@ -4,10 +4,11 @@ import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.dtos.WasteDTO;
 import eco_service.Eco.models.Rating;
 import eco_service.Eco.models.Waste;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Component
 public class WasteMapper implements BaseMapper<Waste, WasteDTO> {
     @Override
     public WasteDTO toDTO(Waste waste) {

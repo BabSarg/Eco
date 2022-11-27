@@ -6,7 +6,6 @@ import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
 import eco_service.Eco.mappers.WasteMapper;
-import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Waste;
 import eco_service.Eco.repositories.WasteRepository;
 import eco_service.Eco.response.Response;
@@ -28,13 +27,13 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
-    public Response<ErrorResponse, List<WasteDTO>> getAllWaste() {
+    public Response<ErrorResponse, List<WasteDTO>> getAll() {
         List<Waste> waste = wasteRepository.findAll();
         return new Response<>(null, wasteMapper.toDTO(waste), WasteDTO.class.getName());
     }
 
     @Override
-    public Response<ErrorResponse, WasteDTO> getByWasteId(Long id) {
+    public Response<ErrorResponse, WasteDTO> getById(Long id) {
         Waste waste = wasteRepository.findById(id).orElseThrow(() -> new RecordNotFoundException("Waste is not found with id : " + id));
         return new Response<>(null, wasteMapper.toDTO(waste), WasteDTO.class.getName());
     }
@@ -46,7 +45,7 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
-    public Response<ErrorResponse, WasteDTO> addWaste(WasteDTO wasteDTO) {
+    public Response<ErrorResponse, WasteDTO> add(WasteDTO wasteDTO) {
         if (wasteRepository.existsById(wasteDTO.getId())) {
             throw new ConflictException(wasteDTO.getId() + "Id already exists");
         }

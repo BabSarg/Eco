@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/goeco/waste/")
+@RequestMapping("/goeco/waste")
 public class WasteController {
 
     private final WasteService wasteService;
@@ -24,26 +24,26 @@ public class WasteController {
         this.wasteService = wasteService;
     }
 
-    @GetMapping(value = "/getAll")
-    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAllWaste() {
-        Response<ErrorResponse, List<WasteDTO>> all = wasteService.getAllWaste();
+    @GetMapping
+    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAll() {
+        Response<ErrorResponse, List<WasteDTO>> all = wasteService.getAll();
         return ResponseEntity.ok(all);
     }
 
-    @GetMapping(value = "/getByWasteId/{id}")
-    public ResponseEntity<Response<ErrorResponse, WasteDTO>> getByWasteId(@PathVariable("id") Long id) {
-        Response<ErrorResponse, WasteDTO> byId = wasteService.getByWasteId(id);
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Response<ErrorResponse, WasteDTO>> getById(@PathVariable("id") Long id) {
+        Response<ErrorResponse, WasteDTO> byId = wasteService.getById(id);
         return ResponseEntity.ok(byId);
     }
 
-    @GetMapping(value = "/getByEcoServiceId/{id}")
+    @GetMapping(value = "/ecoServiceId/{id}")
     public ResponseEntity<Response<ErrorResponse, WasteDTO>> getByEcoServiceId(@PathVariable("id") Long id) {
         Response<ErrorResponse, WasteDTO> byId = wasteService.getByEcoServiceId(id);
         return ResponseEntity.ok(byId);
     }
-    @PostMapping(value = "/save")
+    @PostMapping
     public ResponseEntity<Response<ErrorResponse, WasteDTO>> add(@Valid @RequestBody() WasteDTO wasteDTO) {
-        Response<ErrorResponse, WasteDTO> add = wasteService.addWaste(wasteDTO);
+        Response<ErrorResponse, WasteDTO> add = wasteService.add(wasteDTO);
         return ResponseEntity.ok(add);
     }
 

@@ -1,10 +1,12 @@
 package eco_service.Eco.services.impl;
 
 import eco_service.Eco.dtos.ChangePasswordEcoServiceDto;
+import eco_service.Eco.dtos.EcoServiceAddDTO;
 import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
+import eco_service.Eco.mappers.EcoServiceAddMapper;
 import eco_service.Eco.mappers.EcoServiceMapper;
 import eco_service.Eco.models.EcoService;
 import eco_service.Eco.repositories.EcoServiceRepository;
@@ -20,11 +22,13 @@ public class EcoServiceImpl implements EcoServiceService {
 
     private final EcoServiceRepository ecoServiceRepository;
     private final EcoServiceMapper ecoServiceMapper;
+    private final EcoServiceAddMapper ecoServiceAddMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public EcoServiceImpl(EcoServiceRepository ecoServiceRepository, EcoServiceMapper ecoServiceMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public EcoServiceImpl(EcoServiceRepository ecoServiceRepository, EcoServiceMapper ecoServiceMapper, EcoServiceAddMapper ecoServiceAddMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.ecoServiceRepository = ecoServiceRepository;
         this.ecoServiceMapper = ecoServiceMapper;
+        this.ecoServiceAddMapper = ecoServiceAddMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
@@ -41,11 +45,13 @@ public class EcoServiceImpl implements EcoServiceService {
     }
 
     @Override
-    public Response<ErrorResponse, EcoServiceDTO> add(EcoServiceDTO ecoServiceDTO) {
-        if (ecoServiceRepository.existsByEmail(ecoServiceDTO.getEmail())) {
-            throw new ConflictException(ecoServiceDTO.getEmail() + "Email already exists");
+    public Response<ErrorResponse, EcoServiceDTO> add(EcoServiceAddDTO ecoServiceAddDTO) {
+        if (ecoServiceRepository.existsByEmail(ecoServiceAddDTO.getEmail())) {
+            throw new ConflictException(ecoServiceAddDTO.getEmail() + "Email already exists");
         }
-        EcoService savedEcoService = ecoServiceRepository.save(ecoServiceMapper.toEntity(ecoServiceDTO));
+        EcoService ecoService = ecoServiceAddMapper.toEntity(ecoServiceAddDTO);
+        ecoService.setPassword(bCryptPasswordEncoder.encode(ecoServiceAddDTO.getPassword()));
+        EcoService savedEcoService = ecoServiceRepository.save(ecoService);
         return new Response<>(null, ecoServiceMapper.toDTO(savedEcoService), EcoServiceDTO.class.getSimpleName());
     }
 
