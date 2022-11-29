@@ -53,7 +53,7 @@ public class WasteController {
         return ResponseEntity.ok(all);
     }
 
-    @GetMapping(value = "/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Response<ErrorResponse, WasteDTO>> getById(@PathVariable("id") Long id) {
         Response<ErrorResponse, WasteDTO> byId = wasteService.getById(id);
         return ResponseEntity.ok(byId);

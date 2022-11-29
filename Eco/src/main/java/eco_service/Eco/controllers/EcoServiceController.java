@@ -4,6 +4,7 @@ import eco_service.Eco.dtos.ChangePasswordEcoServiceDto;
 import eco_service.Eco.dtos.EcoServiceAddDTO;
 import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
+import eco_service.Eco.filter.EcoServiceFilter;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.EcoServiceService;
 import org.slf4j.Logger;
@@ -26,8 +27,19 @@ public class EcoServiceController {
     }
 
     @GetMapping
-    public ResponseEntity<Response<ErrorResponse, List<EcoServiceDTO>>> getAll() {
-        Response<ErrorResponse, List<EcoServiceDTO>> all = ecoServiceService.getAll();
+    public ResponseEntity<Response<ErrorResponse, List<EcoServiceDTO>>> getAll(@RequestParam(value = "name", required = false) String name,
+                                                                               @RequestParam(value = "address",required = false)String address,
+                                                                               @RequestParam(value = "country", required = false) String country,
+                                                                               @RequestParam(value = "city", required = false) String city
+
+
+                                                                               ) {
+        Response<ErrorResponse, List<EcoServiceDTO>> all = ecoServiceService.getAll(EcoServiceFilter.where()
+                .name(name)
+                .address(address)
+                .country(country)
+                .city(city)
+                .build());
         return ResponseEntity.ok(all);
     }
 

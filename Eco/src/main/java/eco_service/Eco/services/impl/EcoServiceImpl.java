@@ -6,6 +6,7 @@ import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
+import eco_service.Eco.filter.EcoServiceFilter;
 import eco_service.Eco.mappers.EcoServiceAddMapper;
 import eco_service.Eco.mappers.EcoServiceMapper;
 import eco_service.Eco.models.EcoService;
@@ -16,6 +17,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 public class EcoServiceImpl implements EcoServiceService {
@@ -33,9 +36,16 @@ public class EcoServiceImpl implements EcoServiceService {
     }
 
     @Override
-    public Response<ErrorResponse, List<EcoServiceDTO>> getAll() {
-        List<EcoService> ecoServices = ecoServiceRepository.findAll();
-        return new Response<>(null, ecoServiceMapper.toDTO(ecoServices), EcoServiceDTO.class.getName());
+    public Response<ErrorResponse, List<EcoServiceDTO>> getAll(EcoServiceFilter ecoServiceFilter) {
+        List<EcoService> ecoServiceList;
+        if(ecoServiceFilter.getPredicate() == null){
+            ecoServiceList = ecoServiceRepository.findAll();
+        }else {
+            Iterable<EcoService> iterable = ecoServiceRepository.findAll(ecoServiceFilter.getPredicate());
+            ecoServiceList = StreamSupport.stream(iterable.spliterator(), false)
+                    .collect(Collectors.toList());
+        }
+        return new Response<>(null, ecoServiceMapper.toDTO(ecoServiceList), EcoServiceDTO.class.getName());
     }
 
     @Override
