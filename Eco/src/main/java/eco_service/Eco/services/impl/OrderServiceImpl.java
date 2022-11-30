@@ -2,14 +2,10 @@ package eco_service.Eco.services.impl;
 
 import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.OrderDTO;
-import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.dtos.RatingResponseDto;
-import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.mappers.OrderMapper;
-import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Order;
-import eco_service.Eco.models.Rating;
 import eco_service.Eco.repositories.OrderRepository;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.OrderService;
@@ -32,7 +28,6 @@ public class OrderServiceImpl implements OrderService {
     public Response<ErrorResponse, OrderDTO> add(OrderDTO orderDTO) {
         Order savedOrder = orderRepository.save(orderMapper.toEntity(orderDTO));
         return new Response<>(null, orderMapper.toDTO(savedOrder), OrderDTO.class.getSimpleName());
-
     }
 
     @Override
@@ -47,4 +42,20 @@ public class OrderServiceImpl implements OrderService {
         return new Response<>(null,orderMapper.toDTO(orders),RatingResponseDto.class.getSimpleName());
 
     }
+
+    @Override
+    public Response<ErrorResponse, OrderDTO> updateStatus(Long orderId, String status) {
+        Order order=orderRepository.findById(orderId).orElse(null);
+        status=status.toUpperCase();
+        switch(status){
+            case "APPROVED": order.setStatus(Order.Status.APPROVED);break;
+            case "REVIEW": order.setStatus(Order.Status.REVIEW);break;
+            case "REJECTED": order.setStatus(Order.Status.REJECTED);break;
+            case "FULFILLED": order.setStatus(Order.Status.FULFILLED);break;
+            default: order.setStatus(Order.Status.OPEN);break;
+        }
+        Order savedOrder = orderRepository.save(order);
+        return new Response<>(null, orderMapper.toDTO(savedOrder), OrderDTO.class.getSimpleName());
+    }
+
 }

@@ -39,6 +39,6 @@ public class Order {
     private Status status;
 
     public enum Status {
-        OPEN, REVIEW, APPROVED, REJECTED;
+        OPEN, REVIEW, APPROVED, REJECTED, FULFILLED;
     }
 }

@@ -1,8 +1,10 @@
 package eco_service.Eco.controllers;
 
+import eco_service.Eco.dtos.ChangePasswordEcoServiceDto;
 import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.OrderDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
+import eco_service.Eco.models.Order;
 import eco_service.Eco.response.Response;
 import eco_service.Eco.services.OrderService;
 import org.slf4j.Logger;
@@ -41,4 +43,9 @@ public class OrderController {
         return ResponseEntity.ok(add);
     }
 
+    @PatchMapping("/{orderId}/{status}")
+    public ResponseEntity<Response<ErrorResponse, OrderDTO>> updateStatus(@PathVariable Long orderId,@PathVariable String status) {
+        Response<ErrorResponse, OrderDTO> changedOrder = orderService.updateStatus(orderId, status);
+        return ResponseEntity.ok(changedOrder);
+    }
 }

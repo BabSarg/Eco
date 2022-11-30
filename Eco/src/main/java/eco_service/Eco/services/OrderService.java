@@ -13,4 +13,7 @@ public interface OrderService {
     Response<ErrorResponse, List<OrderDTO>> getAll();
 
     Response<ErrorResponse, List<OrderDTO>> getByEcoServiceId(Long id);
+
+    Response<ErrorResponse, OrderDTO> updateStatus(Long orderId, String status);
+
 }
