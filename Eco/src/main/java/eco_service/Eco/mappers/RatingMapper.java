@@ -28,6 +28,7 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
 
     @Override
     public List<RatingDTO> toDTO(List<Rating> e) {
+
         return e.stream().map(this::toDTO).collect(Collectors.toList());
     }
 

@@ -18,7 +18,6 @@ public class EcoServiceDTO {
 
     private String email;
 
-
     private boolean isDelivery;
 
     private String address;
