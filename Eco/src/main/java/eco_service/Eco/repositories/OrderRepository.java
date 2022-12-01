@@ -12,7 +12,7 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     List<Order> findAll();
 
-    List<Order> findByEcoService_Id(Long id);
+    List<Order> findByEcoServiceId(Long id);
 
     Order getByOrderId(Long orderId);
 }

@@ -1,15 +1,9 @@
-FROM maven:3.5-jdk-8 as maven_build
-WORKDIR /app
-
-COPY pom.xml .
-# To resolve dependencies in a safe way (no re-download when the source code changes)
-RUN mvn clean package -Dmaven.main.skip -Dmaven.test.skip && rm -r target
-
-# To package the application
-COPY src ./src
-RUN mvn clean package -Dmaven.test.skip
+FROM maven:3.8.3-amazoncorretto-11 AS build
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -f /home/app/pom.xml clean package -Dmaven.test.skip
 
 FROM amazoncorretto:11
-COPY target/Eco-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /home/app/target/Eco-0.0.1-SNAPSHOT.jar /usr/local/lib/eco.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar","app.jar"]
+ENTRYPOINT ["java","-jar","/usr/local/lib/eco.jar"]
