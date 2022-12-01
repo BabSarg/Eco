@@ -1,24 +1,24 @@
-How to run the project 
+## **How to run the project**
 
 1. download git and docker 
-2. open git bush and run this command "git clone https://github.com/BabSarg/Eco.git"
-3. open powershell in project directory "...\Eco\Eco" 
-4. run "docker-compose up" in powershell
+2. open git bush and run this command `git clone https://github.com/BabSarg/Eco.git`
+3. open powershell in project directory `...\Eco\Eco` 
+4. run `docker-compose up` in powershell
 
-if you want to restart the application please run the following commands
+## **if you want to restart the application please run the following commands**
 
-1. "docker-compose down"
-2. "docker rmi eco:latest"
-3. "docker-compose up"
+1. docker-compose down`
+2. `docker rmi eco:latest`
+3. `docker-compose up`
 
-if you want to stop the application please run the following commands
+## **If you want to stop the application please run the following commands**
 
-1. "docker-compose down"
-2. "docker rmi eco:latest"
+1. `docker-compose down`
+2. `docker rmi eco:latest`
 
-if there is any changes in the backend project you need to run these commands
+## **If there is any changes in the backend project you need to run these commands**
 
-1. "docker-compose down"
-2. "docker rmi eco:latest"
-3. "git pull"
-4. "docker-compose up"
+1. `docker-compose down`
+2. `docker rmi eco:latest`
+3. `git pull`
+4. `docker-compose up`

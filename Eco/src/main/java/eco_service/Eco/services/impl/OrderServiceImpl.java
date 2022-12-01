@@ -33,12 +33,12 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Response<ErrorResponse, List<OrderDTO>> getAll() {
         List<Order> orders = orderRepository.findAll();
-        return new Response<>(null, orderMapper.toDTO(orders), EcoServiceDTO.class.getName());
+        return new Response<>(null, orderMapper.toDTO(orders), EcoServiceDTO.class.getSimpleName());
     }
 
     @Override
     public Response<ErrorResponse, List<OrderDTO>> getByEcoServiceId(Long id) {
-        List<Order> orders = orderRepository.findByEcoService_Id(id);
+        List<Order> orders = orderRepository.findByEcoServiceId(id);
         return new Response<>(null,orderMapper.toDTO(orders),RatingResponseDto.class.getSimpleName());
 
     }
