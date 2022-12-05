@@ -18,6 +18,4 @@ public class WasteAddressDTO {
     private String city;
 
     private String street;
-
-    private String number;
 }

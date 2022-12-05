@@ -70,7 +70,7 @@ public class EcoServiceController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         ecoServiceService.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(id);
     }
 
 }

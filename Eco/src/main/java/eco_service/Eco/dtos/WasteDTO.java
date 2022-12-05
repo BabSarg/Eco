@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -15,7 +17,7 @@ public class WasteDTO {
 
     private Long id;
 
-    private String type;
+    private List<String> types;
 
     private String description;
 
@@ -23,7 +25,7 @@ public class WasteDTO {
 
     private double latitude;
 
-    private EcoServiceDTO ecoService;
+    private long ecoServiceId;
 
     private WasteAddressDTO wasteAddress;
 
