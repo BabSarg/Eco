@@ -2,8 +2,10 @@ package eco_service.Eco.mappers;
 
 import eco_service.Eco.dtos.WasteAddressDTO;
 import eco_service.Eco.dtos.WasteDTO;
+import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Waste;
 import eco_service.Eco.models.WasteAddress;
+import eco_service.Eco.models.WasteType;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -23,14 +25,13 @@ public class WasteMapper implements BaseMapper<Waste, WasteDTO> {
         return WasteDTO.builder()
                 .id(waste.getId())
                 .description(waste.getDescription())
-                .type(waste.getType())
+                .types(waste.getTypes().stream().map(WasteType::getType).collect(Collectors.toList()))
                 .latitude(waste.getLatitude())
-                .ecoService(ecoServiceMapper.toDTO(waste.getEcoService()))
+                .ecoServiceId(waste.getEcoService().getId())
                 .wasteAddress(WasteAddressDTO.builder()
                         .id(waste.getWasteAddress().getId())
                         .city(waste.getWasteAddress().getCity())
                         .country(waste.getWasteAddress().getCountry())
-                        .number(waste.getWasteAddress().getNumber())
                         .street(waste.getWasteAddress().getStreet())
                         .build())
                 .longitude(waste.getLongitude())
@@ -49,13 +50,14 @@ public class WasteMapper implements BaseMapper<Waste, WasteDTO> {
         return Waste.builder()
                 .id(waste.getId())
                 .description(waste.getDescription())
-                .type(waste.getType())
+                .types(waste.getTypes().stream().map(WasteType::new).collect(Collectors.toList()))
                 .latitude(waste.getLatitude())
-                .ecoService(ecoServiceMapper.toEntity(waste.getEcoService()))
+                .ecoService(EcoService.builder()
+                        .id(waste.getEcoServiceId())
+                        .build())
                 .wasteAddress(WasteAddress.builder()
                         .city(waste.getWasteAddress().getCity())
                         .country(waste.getWasteAddress().getCountry())
-                        .number(waste.getWasteAddress().getNumber())
                         .street(waste.getWasteAddress().getStreet())
                         .build())
                 .longitude(waste.getLongitude())

@@ -28,7 +28,4 @@ public class WasteAddress {
 
     @Column(name = "street")
     private String street;
-
-    @Column(name = "number")
-    private String number;
 }
