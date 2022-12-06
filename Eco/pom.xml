@@ -141,7 +141,7 @@
 							<goal>process</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>/home/app/target/generated-sources</outputDirectory>
+							<outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
 							<processor>com.querydsl.apt.jpa.JPAAnnotationProcessor</processor>
 						</configuration>
 					</execution>

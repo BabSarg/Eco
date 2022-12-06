@@ -5,6 +5,10 @@ import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Expressions;
 import eco_service.Eco.models.QWaste;
+import eco_service.Eco.models.WasteType;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.querydsl.core.types.dsl.Expressions.allOf;
 
@@ -39,8 +43,11 @@ public class WasteFilter extends AbstractFilter {
         private WasteFilterBuilder() {
         }
 
-        public WasteFilterBuilder type(final String type) {
-            ifNotNull(type, value -> this.type = QWaste.waste.type.toLowerCase().like(Expressions.asString("%").concat(value.toLowerCase()).concat("%")));
+        public WasteFilterBuilder type(final List<String> types) {
+            ifNotNull(types, t -> {
+                List<WasteType> wasteTypes = t.stream().map(WasteType::new).collect(Collectors.toList());
+                wasteTypes.forEach(type -> ifNotNull(type, value -> this.type = QWaste.waste.types.contains(type)));
+            });
             return this;
         }
 

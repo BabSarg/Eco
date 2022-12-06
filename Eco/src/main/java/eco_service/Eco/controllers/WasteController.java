@@ -25,7 +25,7 @@ public class WasteController {
     }
 
     @GetMapping
-    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAll(@RequestParam(value = "type",required = false) String type,
+    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getAll(@RequestParam(value = "types",required = false) List<String> types,
                                                                           @RequestParam(value = "longitude",required = false) Double longitude,
                                                                           @RequestParam(value = "latitude",required = false) Double latitude,
                                                                           @RequestParam(value = "country",required = false) String country,
@@ -38,7 +38,7 @@ public class WasteController {
                                                                           @RequestParam(value = "ecoServiceCity",required = false) String ecoServiceCity
     ) {
         Response<ErrorResponse, List<WasteDTO>> all = wasteService.getAll(WasteFilter.where()
-                .type(type)
+                .type(types)
                 .longitude(longitude)
                 .latitude(latitude)
                 .country(country)
