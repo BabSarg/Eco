@@ -26,6 +26,10 @@ public class Rating {
     private String comment;
 
     @ManyToOne
+    @JoinColumn(name = "eco_service_id")
+    private EcoService ecoService;
+
+    @ManyToOne
     @JoinColumn(name = "id")
     private Waste waste;
 

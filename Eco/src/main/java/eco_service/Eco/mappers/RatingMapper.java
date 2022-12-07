@@ -1,6 +1,8 @@
 package eco_service.Eco.mappers;
 
+import eco_service.Eco.dtos.EcoServiceDTO;
 import eco_service.Eco.dtos.RatingDTO;
+import eco_service.Eco.models.EcoService;
 import eco_service.Eco.models.Rating;
 import eco_service.Eco.models.Waste;
 import org.springframework.stereotype.Component;
@@ -23,7 +25,8 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
                 .id(rating.getId())
                 .rating(rating.getRating())
                 .comment(rating.getComment())
-                .waste_id(rating.getWaste().getId())
+                .ecoServiceId(rating.getEcoService().getId())
+                .wasteId(rating.getWaste().getId())
                 .build();
     }
 
@@ -39,7 +42,8 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
                 .id(ratingDTO.getId())
                 .rating(ratingDTO.getRating())
                 .comment(ratingDTO.getComment())
-                .waste(Waste.builder().id(ratingDTO.getWaste_id()).build())
+                .ecoService(EcoService.builder().id(ratingDTO.getEcoServiceId()).build())
+                .waste(Waste.builder().id(ratingDTO.getWasteId()).build())
                 .build();
     }
 
