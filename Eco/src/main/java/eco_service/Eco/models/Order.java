@@ -19,6 +19,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
+    @Column(name = "eco_service_id")
+    private Long ecoServiceId;
+
     @Column(name = "waste_id")
     private Long wasteId;
 
@@ -27,9 +30,6 @@ public class Order {
 
     @Column(name = "customer_email")
     private String customerEmail;
-
-    @Column(name = "customer_phone")
-    private String customerPhone;
 
     @Column(name = "description")
     private String description;
