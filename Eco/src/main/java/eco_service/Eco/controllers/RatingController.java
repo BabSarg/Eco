@@ -35,10 +35,4 @@ public class RatingController {
         return ResponseEntity.ok(allByEcoServiceId);
     }
 
-    @GetMapping("/waste/{id}")
-    public ResponseEntity<Response<ErrorResponse, RatingResponseDto>> getByEcoServiceId(@PathVariable long id){
-        Response<ErrorResponse, RatingResponseDto> allByEcoServiceId = ratingService.getAllByEcoServiceId(id);
-        return ResponseEntity.ok(allByEcoServiceId);
-    }
-
 }
