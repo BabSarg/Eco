@@ -30,4 +30,8 @@ public class Rating {
     @JoinColumn(name = "eco_service_id")
     private EcoService ecoService;
 
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Waste waste;
+
 }

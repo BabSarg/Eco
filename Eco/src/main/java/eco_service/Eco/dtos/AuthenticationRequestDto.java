@@ -11,6 +11,9 @@ public class AuthenticationRequestDto {
         this.password = password;
     }
 
+    public AuthenticationRequestDto() {
+    }
+
     public String getEmail() {
         return email;
     }

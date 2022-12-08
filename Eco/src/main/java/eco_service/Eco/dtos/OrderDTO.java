@@ -14,15 +14,13 @@ import javax.persistence.*;
 @Builder
 public class OrderDTO {
 
-    private Long orderId;
-
-    private Long ecoServiceId;
-
     private Long wasteId;
 
     private String customerName;
 
     private String customerEmail;
+
+    private String customerPhone;
 
     private String description;
 
