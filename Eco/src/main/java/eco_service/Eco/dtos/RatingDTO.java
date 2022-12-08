@@ -18,5 +18,7 @@ public class RatingDTO {
 
     private String comment;
 
-    private EcoServiceDTO ecoServiceDto;
+    private Long ecoServiceId;
+
+    private Long wasteId;
 }

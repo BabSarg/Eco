@@ -1,5 +1,6 @@
 package eco_service.Eco.controllers;
 
+import eco_service.Eco.dtos.RatingByWasteIdDTO;
 import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.dtos.RatingResponseDto;
 import eco_service.Eco.exceptions.ErrorResponse;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/goeco/rating")
@@ -33,6 +35,12 @@ public class RatingController {
     public ResponseEntity<Response<ErrorResponse, RatingResponseDto>> getByEcoServiceId(@PathVariable long id){
         Response<ErrorResponse, RatingResponseDto> allByEcoServiceId = ratingService.getAllByEcoServiceId(id);
         return ResponseEntity.ok(allByEcoServiceId);
+    }
+
+    @GetMapping("/waste/{id}")
+    public ResponseEntity<Response<ErrorResponse, RatingResponseDto>> getAllRatingsByWasteId(@PathVariable long id){
+        Response<ErrorResponse, RatingResponseDto> ratingsByWasteId = ratingService.getAllRatingsByWasteId(id);
+        return ResponseEntity.ok(ratingsByWasteId);
     }
 
 }
