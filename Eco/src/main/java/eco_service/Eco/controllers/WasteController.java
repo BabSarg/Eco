@@ -1,5 +1,6 @@
 package eco_service.Eco.controllers;
 
+import eco_service.Eco.dtos.WasteAddDTO;
 import eco_service.Eco.dtos.WasteDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.filter.WasteFilter;
@@ -66,8 +67,8 @@ public class WasteController {
     }
 
     @PostMapping
-    public ResponseEntity<Response<ErrorResponse, WasteDTO>> add(@Valid @RequestBody() WasteDTO wasteDTO) {
-        Response<ErrorResponse, WasteDTO> add = wasteService.add(wasteDTO);
+    public ResponseEntity<Response<ErrorResponse, WasteAddDTO>> add(@Valid @RequestBody() WasteAddDTO wasteDTO) {
+        Response<ErrorResponse, WasteAddDTO> add = wasteService.add(wasteDTO);
         return ResponseEntity.ok(add);
     }
 

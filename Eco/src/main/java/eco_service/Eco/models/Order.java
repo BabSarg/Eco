@@ -31,6 +31,9 @@ public class Order {
     @Column(name = "customer_email")
     private String customerEmail;
 
+    @Column(name = "customer_phone")
+    private String customerPhone;
+
     @Column(name = "description")
     private String description;
 

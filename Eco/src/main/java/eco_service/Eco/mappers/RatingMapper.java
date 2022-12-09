@@ -2,6 +2,8 @@ package eco_service.Eco.mappers;
 
 import eco_service.Eco.dtos.RatingDTO;
 import eco_service.Eco.models.Rating;
+import eco_service.Eco.services.EcoServiceService;
+import eco_service.Eco.services.WasteService;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,8 +14,15 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
 
     private final EcoServiceMapper ecoServiceMapper;
 
-    public RatingMapper(EcoServiceMapper ecoServiceMapper) {
+    private final WasteMapper wasteMapper;
+    private final EcoServiceService ecoServiceService;
+    private final WasteService wasteService;
+
+    public RatingMapper(EcoServiceMapper ecoServiceMapper, WasteMapper wasteMapper, EcoServiceService ecoServiceService, WasteService wasteService) {
         this.ecoServiceMapper = ecoServiceMapper;
+        this.wasteMapper = wasteMapper;
+        this.ecoServiceService = ecoServiceService;
+        this.wasteService = wasteService;
     }
 
     @Override
@@ -22,7 +31,8 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
                 .id(rating.getId())
                 .rating(rating.getRating())
                 .comment(rating.getComment())
-                .ecoServiceDto(ecoServiceMapper.toDTO(rating.getEcoService()))
+                .ecoServiceDto(rating.getEcoService() != null ? ecoServiceService.getById(rating.getEcoService().getId()).getSuccessObject(): null)
+                .wasteDTO(rating.getWaste() != null ? wasteService.getById(rating.getWaste().getId()).getSuccessObject() : null)
                 .build();
     }
 
@@ -38,7 +48,8 @@ public class RatingMapper implements BaseMapper<Rating, RatingDTO> {
                 .id(ratingDTO.getId())
                 .rating(ratingDTO.getRating())
                 .comment(ratingDTO.getComment())
-                .ecoService(ecoServiceMapper.toEntity(ratingDTO.getEcoServiceDto()))
+                .ecoService(ratingDTO.getEcoServiceDto() != null ? ecoServiceMapper.toEntity(ratingDTO.getEcoServiceDto()): null)
+                .waste(ratingDTO.getWasteDTO() != null ? wasteMapper.toEntity(ratingDTO.getWasteDTO()) : null)
                 .build();
     }
 

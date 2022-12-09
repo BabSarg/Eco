@@ -1,6 +1,5 @@
 package eco_service.Eco.dtos;
 
-import eco_service.Eco.models.EcoService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,15 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class RatingDTO {
-
-    private Long id;
+public class RatingAddDTO {
 
     private double rating;
 
     private String comment;
 
-    private EcoServiceDTO ecoServiceDto;
+    private Long ecoServiceId;
 
-    private WasteDTO wasteDTO;
+    private Long wasteId;
 }

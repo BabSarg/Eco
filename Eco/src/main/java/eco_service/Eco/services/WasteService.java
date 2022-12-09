@@ -1,6 +1,6 @@
 package eco_service.Eco.services;
 
-import eco_service.Eco.dtos.EcoServiceDTO;
+import eco_service.Eco.dtos.WasteAddDTO;
 import eco_service.Eco.dtos.WasteDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.filter.WasteFilter;
@@ -16,5 +16,5 @@ public interface WasteService {
 
     Response<ErrorResponse, WasteDTO> getByEcoServiceId(Long id);
 
-    Response<ErrorResponse, WasteDTO> add(WasteDTO wasteDTO);
+    Response<ErrorResponse, WasteAddDTO> add(WasteAddDTO wasteDTO);
 }

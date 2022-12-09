@@ -14,14 +14,13 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
     @Override
     public OrderDTO toDTO(Order order) {
         return OrderDTO.builder()
-                .orderId(order.getOrderId())
                 .customerEmail(order.getCustomerEmail())
                 .wasteId(order.getWasteId())
                 .customerName(order.getCustomerName())
                 .description(order.getDescription())
-                .ecoServiceId(order.getEcoServiceId())
                 .status(order.getStatus())
                 .customerEmail(order.getCustomerEmail())
+                .customerPhone(order.getCustomerPhone())
                 .build();
     }
 
@@ -33,14 +32,13 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
     @Override
     public Order toEntity(OrderDTO order) {
         return Order.builder()
-                .orderId(order.getOrderId())
                 .customerEmail(order.getCustomerEmail())
                 .wasteId(order.getWasteId())
                 .customerName(order.getCustomerName())
                 .description(order.getDescription())
-                .ecoServiceId(order.getEcoServiceId())
                 .status(order.getStatus())
                 .customerEmail(order.getCustomerEmail())
+                .customerPhone(order.getCustomerPhone())
                 .build();
     }
 

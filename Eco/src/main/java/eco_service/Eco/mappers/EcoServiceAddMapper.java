@@ -18,9 +18,6 @@ public class EcoServiceAddMapper implements BaseMapper<EcoService, EcoServiceAdd
                 .address(ecoService.getAddress())
                 .workHours(ecoService.getWorkHours())
                 .phoneNumber(ecoService.getPhoneNumber())
-                .isFree(ecoService.isFree())
-                .isDelivery(ecoService.isDelivery())
-                .photo(ecoService.getPhoto())
                 .country(ecoService.getCountry())
                 .city(ecoService.getCity())
                 .build();
@@ -40,9 +37,6 @@ public class EcoServiceAddMapper implements BaseMapper<EcoService, EcoServiceAdd
                 .address(ecoServiceDTO.getAddress())
                 .phoneNumber(ecoServiceDTO.getPhoneNumber())
                 .workHours(ecoServiceDTO.getWorkHours())
-                .isFree(ecoServiceDTO.isFree())
-                .isDelivery(ecoServiceDTO.isDelivery())
-                .photo(ecoServiceDTO.getPhoto())
                 .country(ecoServiceDTO.getCountry())
                 .city(ecoServiceDTO.getCity())
                 .build();

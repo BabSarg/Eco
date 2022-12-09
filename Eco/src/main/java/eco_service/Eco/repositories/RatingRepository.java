@@ -11,5 +11,8 @@ import java.util.List;
 public interface RatingRepository extends JpaRepository<Rating, Long> {
 
     List<Rating> findByEcoService_Id(Long ecoServiceId);
+    List<Rating> findByWaste_Id(Long ecoServiceId);
+    List<Rating> findAllByEcoServiceIsNotNull();
+    List<Rating> findAllByWasteIsNotNull();
 
 }

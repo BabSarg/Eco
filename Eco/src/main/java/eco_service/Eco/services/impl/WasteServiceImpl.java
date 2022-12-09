@@ -1,11 +1,11 @@
 package eco_service.Eco.services.impl;
 
-import eco_service.Eco.dtos.EcoServiceDTO;
+import eco_service.Eco.dtos.WasteAddDTO;
 import eco_service.Eco.dtos.WasteDTO;
-import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
 import eco_service.Eco.filter.WasteFilter;
+import eco_service.Eco.mappers.WasteAddMapper;
 import eco_service.Eco.mappers.WasteMapper;
 import eco_service.Eco.models.Waste;
 import eco_service.Eco.repositories.WasteRepository;
@@ -23,10 +23,12 @@ public class WasteServiceImpl implements WasteService {
     private final WasteRepository wasteRepository;
 
     private final WasteMapper wasteMapper;
+    private final WasteAddMapper wasteAddMapper;
 
-    public WasteServiceImpl(WasteRepository wasteRepository, WasteMapper wasteMapper) {
+    public WasteServiceImpl(WasteRepository wasteRepository, WasteMapper wasteMapper, WasteAddMapper wasteAddMapper) {
         this.wasteRepository = wasteRepository;
         this.wasteMapper = wasteMapper;
+        this.wasteAddMapper = wasteAddMapper;
     }
 
     @Override
@@ -55,9 +57,8 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
-    public Response<ErrorResponse, WasteDTO> add(WasteDTO wasteDTO) {
-        Waste savedWaste=wasteRepository.save(wasteMapper.toEntity(wasteDTO));
-        return new Response<>(null, wasteMapper.toDTO(savedWaste), WasteDTO.class.getSimpleName());
-
+    public Response<ErrorResponse, WasteAddDTO> add(WasteAddDTO wasteDTO) {
+        Waste savedWaste=wasteRepository.save(wasteAddMapper.toEntity(wasteDTO));
+        return new Response<>(null, wasteAddMapper.toDTO(savedWaste), WasteDTO.class.getSimpleName());
     }
 }
