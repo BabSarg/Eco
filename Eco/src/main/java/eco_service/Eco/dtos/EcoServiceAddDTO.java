@@ -18,17 +18,11 @@ public class EcoServiceAddDTO {
 
     private String password;
 
-    private boolean isDelivery;
-
     private String address;
 
     private String phoneNumber;
 
     private String workHours;
-
-    private boolean isFree;
-
-    private String photo;
 
     private String city;
 
