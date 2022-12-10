@@ -42,4 +42,10 @@ public class Waste {
 
     @Column(name = "photo")
     private String photo;
+
+    @Column(name = "is_delivery")
+    private boolean isDelivery;
+
+    @Column(name = "is_free")
+    private boolean isFree;
 }

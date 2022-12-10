@@ -18,8 +18,6 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
                 .address(ecoService.getAddress())
                 .workHours(ecoService.getWorkHours())
                 .phoneNumber(ecoService.getPhoneNumber())
-                .isFree(ecoService.isFree())
-                .isDelivery(ecoService.isDelivery())
                 .country(ecoService.getCountry())
                 .city(ecoService.getCity())
                 .build();
@@ -39,8 +37,6 @@ public class EcoServiceMapper implements BaseMapper<EcoService, EcoServiceDTO> {
                 .address(ecoServiceDTO.getAddress())
                 .phoneNumber(ecoServiceDTO.getPhoneNumber())
                 .workHours(ecoServiceDTO.getWorkHours())
-                .isFree(ecoServiceDTO.isFree())
-                .isDelivery(ecoServiceDTO.isDelivery())
                 .country(ecoServiceDTO.getCountry())
                 .city(ecoServiceDTO.getCity())
                 .build();

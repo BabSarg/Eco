@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,10 +19,12 @@ public class OrderDTO {
     private String customerName;
 
     private String customerEmail;
+
     private String customerPhone;
 
     private String description;
 
     private Order.Status status;
 
+    private LocalDateTime orderTime;
 }

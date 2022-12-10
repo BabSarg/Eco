@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @AllArgsConstructor
@@ -40,6 +41,8 @@ public class Order {
     @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
     private Status status;
+
+    private LocalDateTime orderTime;
 
     public enum Status {
         OPEN, REVIEW, APPROVED, REJECTED, FULFILLED;
