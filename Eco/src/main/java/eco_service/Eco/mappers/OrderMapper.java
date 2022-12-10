@@ -21,6 +21,7 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
                 .status(order.getStatus())
                 .customerEmail(order.getCustomerEmail())
                 .customerPhone(order.getCustomerPhone())
+                .orderTime(order.getOrderTime())
                 .build();
     }
 
@@ -39,6 +40,7 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
                 .status(order.getStatus())
                 .customerEmail(order.getCustomerEmail())
                 .customerPhone(order.getCustomerPhone())
+                .orderTime(order.getOrderTime())
                 .build();
     }
 

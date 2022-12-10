@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import java.util.List;
 
 @AllArgsConstructor
@@ -24,5 +25,9 @@ public class WasteAddDTO {
     private long ecoServiceId;
 
     private WasteAddressAddDTO wasteAddress;
+
+    private boolean isDelivery;
+
+    private boolean isFree;
 
 }

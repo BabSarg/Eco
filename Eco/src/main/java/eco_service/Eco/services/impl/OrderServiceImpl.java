@@ -11,6 +11,7 @@ import eco_service.Eco.response.Response;
 import eco_service.Eco.services.OrderService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -26,7 +27,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Response<ErrorResponse, OrderDTO> add(OrderDTO orderDTO) {
+        orderDTO.setOrderTime(LocalDateTime.now());
         Order savedOrder = orderRepository.save(orderMapper.toEntity(orderDTO));
+
         return new Response<>(null, orderMapper.toDTO(savedOrder), OrderDTO.class.getSimpleName());
     }
 

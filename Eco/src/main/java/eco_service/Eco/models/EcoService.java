@@ -28,9 +28,6 @@ public class EcoService {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "is_delivery")
-    private boolean isDelivery;
-
     @Column(name = "address")
     private String address;
 
@@ -39,9 +36,6 @@ public class EcoService {
 
     @Column(name = "work_hours")
     private String workHours;
-
-    @Column(name = "is_free")
-    private boolean isFree;
 
     @Column(name = "refresh_token")
     private String refreshToken;
