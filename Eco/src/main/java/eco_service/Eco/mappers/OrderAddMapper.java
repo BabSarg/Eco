@@ -1,8 +1,6 @@
 package eco_service.Eco.mappers;
 
-import eco_service.Eco.dtos.EcoServiceDTO;
-import eco_service.Eco.dtos.OrderDTO;
-import eco_service.Eco.models.EcoService;
+import eco_service.Eco.dtos.OrderAddDTO;
 import eco_service.Eco.models.Order;
 import org.springframework.stereotype.Component;
 
@@ -10,11 +8,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class OrderMapper implements BaseMapper<Order, OrderDTO> {
+public class OrderAddMapper implements BaseMapper<Order, OrderAddDTO> {
     @Override
-    public OrderDTO toDTO(Order order) {
-        return OrderDTO.builder()
-                .id(order.getOrderId())
+    public OrderAddDTO toDTO(Order order) {
+        return OrderAddDTO.builder()
                 .customerEmail(order.getCustomerEmail())
                 .wasteId(order.getWasteId())
                 .customerName(order.getCustomerName())
@@ -27,14 +24,13 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
     }
 
     @Override
-    public List<OrderDTO> toDTO(List<Order> e) {
+    public List<OrderAddDTO> toDTO(List<Order> e) {
         return e.stream().map(this::toDTO).collect(Collectors.toList());
     }
 
     @Override
-    public Order toEntity(OrderDTO order) {
+    public Order toEntity(OrderAddDTO order) {
         return Order.builder()
-                .orderId(order.getId())
                 .customerEmail(order.getCustomerEmail())
                 .wasteId(order.getWasteId())
                 .customerName(order.getCustomerName())
@@ -47,7 +43,7 @@ public class OrderMapper implements BaseMapper<Order, OrderDTO> {
     }
 
     @Override
-    public List<Order> toEntity(List<OrderDTO> d) {
+    public List<Order> toEntity(List<OrderAddDTO> d) {
         return d.stream().map(this::toEntity).collect(Collectors.toList());
     }
 }

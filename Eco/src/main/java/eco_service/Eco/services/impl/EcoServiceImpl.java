@@ -3,6 +3,7 @@ package eco_service.Eco.services.impl;
 import eco_service.Eco.dtos.ChangePasswordEcoServiceDto;
 import eco_service.Eco.dtos.EcoServiceAddDTO;
 import eco_service.Eco.dtos.EcoServiceDTO;
+import eco_service.Eco.email.MailService;
 import eco_service.Eco.exceptions.ConflictException;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.exceptions.RecordNotFoundException;
@@ -27,12 +28,14 @@ public class EcoServiceImpl implements EcoServiceService {
     private final EcoServiceMapper ecoServiceMapper;
     private final EcoServiceAddMapper ecoServiceAddMapper;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final MailService mailService;
 
-    public EcoServiceImpl(EcoServiceRepository ecoServiceRepository, EcoServiceMapper ecoServiceMapper, EcoServiceAddMapper ecoServiceAddMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public EcoServiceImpl(EcoServiceRepository ecoServiceRepository, EcoServiceMapper ecoServiceMapper, EcoServiceAddMapper ecoServiceAddMapper, BCryptPasswordEncoder bCryptPasswordEncoder, MailService mailService) {
         this.ecoServiceRepository = ecoServiceRepository;
         this.ecoServiceMapper = ecoServiceMapper;
         this.ecoServiceAddMapper = ecoServiceAddMapper;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.mailService = mailService;
     }
 
     @Override
@@ -62,6 +65,7 @@ public class EcoServiceImpl implements EcoServiceService {
         EcoService ecoService = ecoServiceAddMapper.toEntity(ecoServiceAddDTO);
         ecoService.setPassword(bCryptPasswordEncoder.encode(ecoServiceAddDTO.getPassword()));
         EcoService savedEcoService = ecoServiceRepository.save(ecoService);
+        mailService.sendMail(savedEcoService.getEmail(), "Registration confirmation", "Dear " + ecoService.getName() + "\n You are registered successfully");
         return new Response<>(null, ecoServiceMapper.toDTO(savedEcoService), EcoServiceDTO.class.getSimpleName());
     }
 
