@@ -1,9 +1,11 @@
 package eco_service.Eco.services.impl;
 
 import eco_service.Eco.dtos.EcoServiceDTO;
+import eco_service.Eco.dtos.OrderAddDTO;
 import eco_service.Eco.dtos.OrderDTO;
 import eco_service.Eco.dtos.RatingResponseDto;
 import eco_service.Eco.exceptions.ErrorResponse;
+import eco_service.Eco.mappers.OrderAddMapper;
 import eco_service.Eco.mappers.OrderMapper;
 import eco_service.Eco.models.Order;
 import eco_service.Eco.repositories.OrderRepository;
@@ -19,16 +21,18 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
+    private final OrderAddMapper orderAddMapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, OrderMapper orderMapper, OrderAddMapper orderAddMapper) {
         this.orderRepository = orderRepository;
         this.orderMapper = orderMapper;
+        this.orderAddMapper = orderAddMapper;
     }
 
     @Override
-    public Response<ErrorResponse, OrderDTO> add(OrderDTO orderDTO) {
+    public Response<ErrorResponse, OrderDTO> add(OrderAddDTO orderDTO) {
         orderDTO.setOrderTime(LocalDateTime.now());
-        Order savedOrder = orderRepository.save(orderMapper.toEntity(orderDTO));
+        Order savedOrder = orderRepository.save(orderAddMapper.toEntity(orderDTO));
 
         return new Response<>(null, orderMapper.toDTO(savedOrder), OrderDTO.class.getSimpleName());
     }

@@ -2,6 +2,7 @@ package eco_service.Eco.controllers;
 
 import eco_service.Eco.dtos.ChangePasswordEcoServiceDto;
 import eco_service.Eco.dtos.EcoServiceDTO;
+import eco_service.Eco.dtos.OrderAddDTO;
 import eco_service.Eco.dtos.OrderDTO;
 import eco_service.Eco.exceptions.ErrorResponse;
 import eco_service.Eco.models.Order;
@@ -38,7 +39,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Response<ErrorResponse, OrderDTO>> add(@Valid @RequestBody() OrderDTO orderDTO) {
+    public ResponseEntity<Response<ErrorResponse, OrderDTO>> add(@Valid @RequestBody() OrderAddDTO orderDTO) {
         Response<ErrorResponse, OrderDTO> add = orderService.add(orderDTO);
         return ResponseEntity.ok(add);
     }
