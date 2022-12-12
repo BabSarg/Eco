@@ -3,9 +3,12 @@ package eco_service.Eco.dtos;
 import java.util.Objects;
 
 public class ChangePasswordEcoServiceDto {
-    private final String oldPassword;
-    private final String newPassword;
-    private final String confirmPassword;
+    private  String oldPassword;
+    private  String newPassword;
+    private  String confirmPassword;
+
+    public ChangePasswordEcoServiceDto() {
+    }
 
     public ChangePasswordEcoServiceDto(String oldPassword, String newPassword, String confirmPassword) {
         this.oldPassword = oldPassword;
