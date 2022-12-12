@@ -61,9 +61,8 @@ public class WasteController {
     }
 
     @GetMapping(value = "/ecoServiceId/{id}")
-    public ResponseEntity<Response<ErrorResponse, WasteDTO>> getByEcoServiceId(@PathVariable("id") Long id) {
-        Response<ErrorResponse, WasteDTO> byId = wasteService.getByEcoServiceId(id);
-        return ResponseEntity.ok(byId);
+    public ResponseEntity<Response<ErrorResponse, List<WasteDTO>>> getByEcoServiceId(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(wasteService.getByEcoServiceId(id));
     }
 
     @PostMapping

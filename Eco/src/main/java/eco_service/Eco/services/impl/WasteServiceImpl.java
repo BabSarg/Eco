@@ -51,9 +51,12 @@ public class WasteServiceImpl implements WasteService {
     }
 
     @Override
-    public Response<ErrorResponse, WasteDTO> getByEcoServiceId(Long id) {
-        Waste waste = wasteRepository.findByEcoServiceId(id).orElseThrow(() -> new RecordNotFoundException("Waste is not found with id : " + id));
-        return new Response<>(null, wasteMapper.toDTO(waste), WasteDTO.class.getName());
+    public Response<ErrorResponse, List<WasteDTO>> getByEcoServiceId(Long id) {
+        List<WasteDTO> wasteAddDTOS = wasteRepository.findAllByEcoService_Id(id)
+                .stream()
+                .map(wasteMapper::toDTO)
+                .collect(Collectors.toList());
+        return new Response<>(null, wasteAddDTOS, WasteDTO.class.getName());
     }
 
     @Override

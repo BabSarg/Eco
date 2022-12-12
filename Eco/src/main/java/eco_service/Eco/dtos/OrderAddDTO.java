@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 public class OrderAddDTO {
     private Long wasteId;
 
+    private Long ecoServiceId;
+
     private String customerName;
 
     private String customerEmail;
