@@ -8,10 +8,10 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface WasteRepository extends JpaRepository<Waste, Long>, QuerydslPredicateExecutor<Waste> {
-    @Query("SELECT waste from Waste waste WHERE waste.ecoService.id = :id")
-    Optional<Waste> findByEcoServiceId(@Param("id") Long id);
+    List<Waste> findAllByEcoService_Id(@Param("id") Long id);
 }

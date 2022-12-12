@@ -30,8 +30,8 @@ public class WasteDTO {
 
     private WasteAddressDTO wasteAddress;
 
-    private boolean isDelivery;
+    private Boolean isDelivery;
 
-    private boolean isFree;
+    private Boolean isFree;
 
 }

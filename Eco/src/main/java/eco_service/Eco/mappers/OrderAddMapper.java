@@ -32,6 +32,7 @@ public class OrderAddMapper implements BaseMapper<Order, OrderAddDTO> {
     public Order toEntity(OrderAddDTO order) {
         return Order.builder()
                 .customerEmail(order.getCustomerEmail())
+                .ecoServiceId(order.getEcoServiceId())
                 .wasteId(order.getWasteId())
                 .customerName(order.getCustomerName())
                 .description(order.getDescription())

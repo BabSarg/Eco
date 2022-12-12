@@ -35,8 +35,8 @@ public class WasteMapper implements BaseMapper<Waste, WasteDTO> {
                         .street(waste.getWasteAddress().getStreet())
                         .build())
                 .longitude(waste.getLongitude())
-                .isFree(waste.isFree())
-                .isDelivery(waste.isDelivery())
+                .isFree(waste.getIsFree())
+                .isDelivery(waste.getIsDelivery())
                 .build();
     }
 
@@ -63,8 +63,8 @@ public class WasteMapper implements BaseMapper<Waste, WasteDTO> {
                         .street(waste.getWasteAddress().getStreet())
                         .build())
                 .longitude(waste.getLongitude())
-                .isFree(waste.isFree())
-                .isDelivery(waste.isDelivery())
+                .isFree(waste.getIsFree())
+                .isDelivery(waste.getIsDelivery())
                 .build();
     }
 

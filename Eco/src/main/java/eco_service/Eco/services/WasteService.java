@@ -14,7 +14,7 @@ public interface WasteService {
 
     Response<ErrorResponse, WasteDTO> getById(Long id);
 
-    Response<ErrorResponse, WasteDTO> getByEcoServiceId(Long id);
+    Response<ErrorResponse, List<WasteDTO>> getByEcoServiceId(Long id);
 
     Response<ErrorResponse, WasteAddDTO> add(WasteAddDTO wasteDTO);
 }

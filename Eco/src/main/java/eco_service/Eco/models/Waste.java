@@ -44,8 +44,8 @@ public class Waste {
     private String photo;
 
     @Column(name = "is_delivery")
-    private boolean isDelivery;
+    private Boolean isDelivery;
 
     @Column(name = "is_free")
-    private boolean isFree;
+    private Boolean isFree;
 }

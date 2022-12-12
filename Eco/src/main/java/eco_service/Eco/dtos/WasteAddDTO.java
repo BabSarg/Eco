@@ -26,8 +26,8 @@ public class WasteAddDTO {
 
     private WasteAddressAddDTO wasteAddress;
 
-    private boolean isDelivery;
+    private Boolean isDelivery;
 
-    private boolean isFree;
+    private Boolean isFree;
 
 }
